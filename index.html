@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) — Consent Mode v2, basic: gtag.js is loaded only after consent is granted, and only on
+     the GitHub Pages host (scripts/deploy.sh); update the hostname if the site moves. Choice lives in src/consent.js. -->
+<script>
+  // Consent key 'astravoid.consent.v1' and GA ID 'G-WBKTKHJJ8L' are duplicated in src/consent.js — keep in sync.
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+  // ?ga_debug: load on any host (still only after consent) and route hits to GA4 DebugView.
+  var gaDebug = new URLSearchParams(location.search).has('ga_debug');
+  window.AVLoadGA = function () {
+    if ((location.hostname !== 'maxkazar.github.io' && !gaDebug) || window.AV_GA_LOADED) return;
+    window.AV_GA_LOADED = true;
+    document.head.appendChild(Object.assign(document.createElement('script'), {
+      async: true, src: 'https://www.googletagmanager.com/gtag/js?id=G-WBKTKHJJ8L'
+    }));
+    gtag('js', new Date());
+    // page_view is sent by App.jsx per screen; debug_mode must be absent (not false) outside debug — any value enables it.
+    var cfg = { send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false };
+    if (gaDebug) cfg.debug_mode = true;
+    gtag('config', 'G-WBKTKHJJ8L', cfg);
+  };
+  try {
+    if (localStorage.getItem('astravoid.consent.v1') === 'granted') {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      window.AVLoadGA();
+    }
+  } catch (e) { /* storage unavailable */ }
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AstraVoid</title>
+<link rel="icon" href="data:,">
+<style>html,body{background:#050301;height:100%;margin:0;overflow:hidden}#root{transform-origin:0 0;position:absolute;top:0;left:0}</style>
+  <script type="module" crossorigin src="/astravoid-demo/assets/index-9w0vhAMN.js"></script>
+  <link rel="stylesheet" crossorigin href="/astravoid-demo/assets/index-2DZ_gFqr.css">
+</head>
+<body><div id="root"></div></body>
+</html>
